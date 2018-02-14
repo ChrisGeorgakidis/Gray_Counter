@@ -1,4 +1,3 @@
-
  /*
  -----------------------------------------------------------------------------
  -- File           : Gray_4bits_RTL.v
@@ -37,7 +36,7 @@ assign gray_out = state;
 always @(posedge clk or posedge reset)
 begin
 	// Code to implement a 4-bit Gray code
-	if (reset == 1) begin
+	if (reset == 1'b1) begin
 		state <= 4'b0000;
 	end
 	else begin
