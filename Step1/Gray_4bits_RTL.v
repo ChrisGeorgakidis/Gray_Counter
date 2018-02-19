@@ -25,8 +25,8 @@
  -- --------------------------------------------------------------------------
  */
 
-module gray_4bits (clk, /*clk_en,*/ reset, gray_out);
-input wire clk, /*clk_en,*/ reset;
+module gray_4bits (clk, reset, gray_out);
+input wire clk, reset;
 output wire [3:0]gray_out;
 
 reg [3:0]state;
@@ -35,7 +35,6 @@ assign gray_out = state;
 
 always @(posedge clk or posedge reset)
 begin
-	// Code to implement a 4-bit Gray code
 	if (reset == 1'b1) begin
 		state <= 4'b0000;
 	end
