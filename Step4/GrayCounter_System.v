@@ -17,26 +17,26 @@
 // Additional Comments: Instantiation of the GrayCounter_Nbits and GrayCounter_Pulse models
 //
 //////////////////////////////////////////////////////////////////////////////////
-module GrayCounter_System (clk, reset, noisy, leds);
+module GrayCounter_System (clk, reset, leds);
 parameter N = 8;
-input wire clk, reset, noisy;
+parameter distance = 100000000;// How much for 1 Hz when clk period is 10 ns?
+input clk, reset;
 output [N-1:0] leds;
-wire clean;
+wire pulse;
 
-// Instantiation of the debouncer
+// Instantiation of the GrayCounter_Pulse
 // Here
-debounce debounce(
-	.clk	(clk),
-	.reset	(reset),
-	.noisy	(noisy),
-	.clean	(clean)
+GrayCounter_Pulse #(distance) GrayCounter_Pulse (
+	.clk		(clk),
+	.reset		(reset),
+	.pulse		(pulse)
 );
 // Instantiation of the gray_Nbits
 // Here
 gray_Nbits #(N) gray_Nbits (
 	.clk		(clk),
 	.reset		(reset),
-	.enable		(clean),
+	.enable		(pulse),
 	.gray_out	(leds)
 );
 

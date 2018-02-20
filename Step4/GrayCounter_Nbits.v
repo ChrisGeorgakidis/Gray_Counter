@@ -28,7 +28,7 @@ assign gray_out_aux = state;
 // The state of the Gray counter
 always @(posedge clk or posedge reset) begin
 	if (reset == 1'b1) begin
-		state <= {Zeros, 1'b1};
+		state <= {1,Zeros};
 	end
 	else begin
 		if (enable == 1) begin
@@ -59,6 +59,9 @@ always @ (state) begin
 				toggle[i] = state[i-1] & (~prev);
 			end
 			toggle[N] = ~(|state[N-2:0]);
+		end
+		else begin
+			//stuff
 		end
 	end
 end

@@ -11,7 +11,7 @@
 `timescale 1ns/1ps
 `define cycle 10   // this is equivalent to defines in C
 
-module TB3();
+module TB4();
 parameter N = 8;
 parameter distance = 1000;  //
 reg clk, reset;

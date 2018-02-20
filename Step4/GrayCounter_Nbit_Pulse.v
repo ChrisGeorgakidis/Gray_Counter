@@ -24,7 +24,7 @@ always @(posedge clk or posedge reset) begin
 			end
 			else begin							//keep it at 0 otherwise nad increase counter
 				pulse 	<= 1'b0;
-				counter <= counter + 1;
+				counter <= counter + 27'd1;
 			end
 	end
 end
