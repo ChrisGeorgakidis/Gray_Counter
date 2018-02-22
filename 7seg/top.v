@@ -25,14 +25,14 @@ FourDigitLEDdriver FourDigitLEDdriver (
 	.reset		(reset),
 	.clock		(clk),
 	.Data_in	(leds_w),
-	.an			(~an),
-	.a			(~a),
-	.b			(~b),
-	.c			(~c),
-	.d			(~d),
-	.e			(~e),
-	.f			(~f),
-	.g			(~g)
+	.an			(an),
+	.a			(a),
+	.b			(b),
+	.c			(c),
+	.d			(d),
+	.e			(e),
+	.f			(f),
+	.g			(g)
 );
 
 endmodule

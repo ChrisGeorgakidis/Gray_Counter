@@ -28,7 +28,7 @@ assign gray_out_aux = state;
 // The state of the Gray counter
 always @(posedge clk or posedge reset) begin
 	if (reset == 1'b1) begin
-		state <= {1,Zeros};
+		state <= {Zeros,1};
 	end
 	else begin
 		if (enable == 1) begin
@@ -43,27 +43,17 @@ always @(posedge clk or posedge reset) begin
 end
 
 // The combinational logic produces the toggle[N:0] signals
-always @ (state) begin
-	if (reset == 1'b1) begin
-		toggle = 'b0;
-	end
-	else begin
-		if (enable == 1) begin
-			toggle[0] =  1'b1;
-			toggle[1] = state[0];	//checks aux bit
-			for (i=2; i<N; i=i+1) begin
-				prev = state[i-2];
-				for (j = i-3; j >= 0; j = j-1) begin
-					prev = prev | state[j];
-				end
-				toggle[i] = state[i-1] & (~prev);
-			end
-			toggle[N] = ~(|state[N-2:0]);
+always @ (*) begin
+	toggle[0] =  1'b1;
+	toggle[1] = state[0];	//checks aux bit
+	for (i=2; i<N; i=i+1) begin
+		prev = state[i-2];
+		for (j = i-3; j >= 0; j = j-1) begin
+			prev = prev | state[j];
 		end
-		else begin
-			//stuff
-		end
+		toggle[i] = state[i-1] & (~prev);
 	end
+	toggle[N] = ~(|state[N-2:0]);
 end
 
 endmodule

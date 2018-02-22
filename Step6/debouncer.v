@@ -24,7 +24,7 @@ always @ (posedge clk or posedge reset) begin
 					delay <= DELAY;		//max delay
 					step <= step + 3'b1;
 				end
-				else if (step < 7) begin
+				else if (step < 4) begin
 					delay <= delay >> 1;	//delay/2
 					step <= step + 3'b1;
 				end
